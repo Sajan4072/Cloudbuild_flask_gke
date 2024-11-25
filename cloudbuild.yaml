@@ -1,0 +1,31 @@
+#build flask backend
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/docker-gke-436022/ic4-flask-api:latest', './Backend/app/']
+    id: 'Build Docker image'
+
+#push flask backend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/docker-gke-436022/ic4-flask-api:latest']
+    id: 'Push Docker image'
+
+#build nginx
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/docker-gke-436022/ic4-nginx:latest', './Backend/nginx/']
+    id: 'Build Docker image'
+
+#push nginx
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/docker-gke-436022/ic4-nginx:latest']
+    id: 'Push Docker image'
+
+#build frontend
+  - name: 'gcr.io/cloud-builders/docker'
+  #specify the dockerfile name which is Dockerfile_react
+    args: ['build', '-t', 'gcr.io/docker-gke-436022/ic4-frontend:latest', '-f', './Frontend/upload-form/Dockerfile_react', '.']
+    id: 'Build Docker image'
+
+#push frontend
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/docker-gke-436022/ic4-frontend:latest']
+    id: 'Push Docker image'
