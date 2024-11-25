@@ -22,13 +22,7 @@ steps:
 #build frontend
   - name: 'gcr.io/cloud-builders/docker'
   #specify the dockerfile name which is Dockerfile_react 
-    args:
-      - build
-      - '-t'
-      - 'gcr.io/high-age-441901-e5/ic4-frontend:latest'
-      - '-f'
-      - './Frontend/upload-form/Dockerfile_react'
-      - '.'
+    args: ['build', '-t', 'gcr.io/high-age-441901-e5/ic4-frontend:latest', './Frontend/upload-form/']
     id: 'Containerize frontend'
 
 #push frontend
