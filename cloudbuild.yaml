@@ -29,3 +29,6 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/docker-gke-436022/ic4-frontend:latest']
     id: 'Push Docker image'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
